@@ -6,6 +6,7 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import axios from "axios";
 import {base_url} from '../../services/config.js'
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
     const [name, setName] = useState("");
@@ -33,10 +34,10 @@ export default function LoginForm() {
         password,
         confirmPassword,
       });
-          console.log("res", res);
+       
           
         if (res.status == 201) {
-          alert("Admin signup successfully!")
+          toast.success("Admin signup successfully!")
           setCompanyName("")
           setEmail("")
           setConfirmPassword("")

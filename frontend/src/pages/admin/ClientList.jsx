@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Search, ChevronDown, X } from "lucide-react";
 import Sidebar from "../../components/common/Sidebar";
 import { useDataContext } from "../../context/DataContext";
+import NoClientAdded from "../../components/ErrorsModal/NoClientAdded";
 
 export default function ClientDashboard() {
   // const [clients] = useState([
@@ -82,7 +83,8 @@ export default function ClientDashboard() {
 
 
 
-  return (
+  return(
+   
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
@@ -228,8 +230,10 @@ export default function ClientDashboard() {
           </div>
         </div>
       </div>
+        {quotations.length <1 ? <NoClientAdded /> : (
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         <div className="overflow-x-auto">
+           
           <table className="w-full min-w-[700px]">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
@@ -257,7 +261,7 @@ export default function ClientDashboard() {
             <tbody className="divide-y divide-gray-200">
               {quotations.map((client) => {
                 const customer = client.customerDetails;
-                console.log("customer ===>", customer);
+                
 
                 return (
                   <tr key={client._id} className="hover:bg-gray-50">
@@ -293,6 +297,7 @@ export default function ClientDashboard() {
               })}
             </tbody>
           </table>
+       
         </div>
 
         <div className="px-6 py-4 border-t border-gray-200 flex flex-wrap gap-3 items-center justify-between">
@@ -321,6 +326,8 @@ export default function ClientDashboard() {
           </div>
         </div>
       </div>
+      )}
     </div>
-  );
+      )
+       
 }

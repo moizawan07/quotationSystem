@@ -35,9 +35,6 @@ export default function Dashboard() {
           companyid: userData.companyId,
         },
       });
-
-      console.log("res ==>", res);
-
       setData(res.data);
     };
 

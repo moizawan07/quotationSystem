@@ -16,9 +16,12 @@ import Dashboard from "./pages/admin/Dashboard";
 import QuotationHistory from "./pages/admin/QuotationHistory";
 import { AuthProvider } from "./context/AuthContext";
 import { DataProvider } from "./context/DataContext";
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
+    <>
+    <ToastContainer />
     <AuthProvider>
       <DataProvider>
         <Routes>
@@ -44,6 +47,7 @@ const App = () => {
         </Routes>
       </DataProvider>
     </AuthProvider>
+    </>
   );
 };
 

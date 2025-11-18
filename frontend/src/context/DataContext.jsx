@@ -5,8 +5,9 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [data, setData] = useState(null);
+  const [pending,setPending] = useState(false);
+  const [error,setError] = useState(false);
 
-  console.log("data state in contxt", data);
   
   return (
     <DataContext.Provider value={{ data, setData }}>

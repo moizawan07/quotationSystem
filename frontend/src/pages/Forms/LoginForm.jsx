@@ -7,6 +7,7 @@ import { base_url } from "../../services/config.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext.jsx";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -28,9 +29,9 @@ export default function LoginForm() {
       const url = `${base_url}/auth/login`;
       const res = await axios.post(url, { email, password, role });
 
-      alert(`${role === "admin" ? "Admin" : "User"} logged in successfully!`);
+      toast.success(`${role === "admin" ? "Admin" : "User"} logged in successfully!`);
 
-      console.log("res ==>",res);
+      
       
 
       login(res.data.token)

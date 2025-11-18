@@ -10,6 +10,7 @@ import {
   LogOut,
   Menu,
   X,
+  BookDashedIcon,
 } from "lucide-react";
 import Userimg from "../../assets/images/profileImg.png";
 import { Link } from "react-router-dom";
@@ -18,7 +19,8 @@ import { useAuthContext } from "../../context/AuthContext";
 const ProfileSidebar = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const {logout} = useAuthContext()
+  const {logout, getUserDetails} = useAuthContext();
+  const userData = getUserDetails();
 
   const MenuItem = ({ icon, label, link, hasArrow = true }) => (
     <Link
@@ -35,11 +37,12 @@ const ProfileSidebar = () => {
   );
 
   const navigationItems = [
+    { id: 1, icon: <BookDashedIcon className="w-5 h-5" />, label: "Dashboard", link: "/dashboard", hasArrow: true },
     { id: 1, icon: <User className="w-5 h-5" />, label: "My Profile", link: "/profile", hasArrow: true },
-    { id: 2, icon: <Settings className="w-5 h-5" />, label: "Settings", isDropdown: true },
     { id: 3, icon: <Bell className="w-5 h-5" />, label: "Notifications", link: "/notifications", hasArrow: true },
     { id: 4, icon: <MessageCircle className="w-5 h-5" />, label: "FAQ", link: "/faq", hasArrow: true },
     { id: 5, icon: <Info className="w-5 h-5" />, label: "About App", link: "/about", hasArrow: true },
+    { id: 2, icon: <Settings className="w-5 h-5" />, label: "Settings", isDropdown: true },
   ];
 
   const settingsItems = [
@@ -71,10 +74,10 @@ const ProfileSidebar = () => {
           className="flex items-center space-x-[10px] mt-[10px] mb-[38px] pb-[5px] 
           ml-4 sm:ml-4 cursor-pointer"
         >
-          <img className="w-12 h-12 rounded-full object-cover" src={Userimg} alt="Profile" />
+          <img className="w-12 h-12 rounded-full object-cover" src={userData?.profileImage} alt="Profile" />
           <div className="flex flex-col">
-            <p className="text-base font-semibold text-gray-800">Brown Martin</p>
-            <p className="text-xs text-gray-500">brownmartin@gmail.com</p>
+            <p className="text-base font-semibold text-gray-800">{userData?.name}</p>
+            <p className="text-xs text-gray-500">{userData?.email}</p>
           </div>
         </Link>
 
