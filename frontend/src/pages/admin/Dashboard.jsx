@@ -36,8 +36,6 @@ export default function Dashboard() {
 
   return (
     <>
-    <SaveAsModal />
-    <ShareQuotationModal />
     <div className="w-full min-h-screen bg-[#F8F9FA]">
       {/* HEADER */}
       <header className="bg-white border-b border-gray-100 px-4 sm:px-8 py-4 w-full">
